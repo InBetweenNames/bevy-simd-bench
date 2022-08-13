@@ -1,0 +1,20 @@
+[package]
+name = "bevy-simd-bench"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = { git = "https://github.com/bevyengine/bevy.git", branch = "main" }
+criterion = { version = "0.3", features = ["html_reports"] }
+rand = "0.8"
+
+[profile.release]
+lto = true
+debug = 2
+opt-level = 3
+
+[[bench]]
+name = "bench"
+harness = false
