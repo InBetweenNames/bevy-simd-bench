@@ -37,6 +37,8 @@ optimizing them out, and provide a more realistic distribution.
 
 # Results
 
+![Results](https://user-images.githubusercontent.com/7820684/184507249-cdbec2dd-be84-447b-841d-9bd2113be838.png)
+
 So far, AoSoA seems to be winning on my system, followed by the SoA layout, followed by the AoS layouts.
 
 # Do these results generalize?
