@@ -64,9 +64,7 @@ impl PositionBundle {
 
 #[derive(Bundle)]
 struct MovingBundle {
-    #[bundle]
     position: PositionBundle,
-    #[bundle]
     velocity: VelocityBundle,
 }
 
@@ -180,6 +178,25 @@ impl<'w> Benchmark<'w> {
         self.3
             .for_each_mut(&mut self.0, |(velocity, mut position)| {
                 position.0 += time * velocity.0;
+            });
+    }
+
+    pub fn run_optimal_nochange(&mut self, time: f32) {
+        //Ensure sensible access patterns: if we merge the queries into one big query, then we'll incur more
+        //cache misses as we'll be accessing x, y, and z in order, and they likely won't be near each other in memory.
+        //Going in order is a more cache-friendly access pattern.
+
+        self.1
+            .for_each_mut(&mut self.0, |(velocity, mut position)| {
+                position.bypass_change_detection().0 += time * velocity.0;
+            });
+        self.2
+            .for_each_mut(&mut self.0, |(velocity, mut position)| {
+                position.bypass_change_detection().0 += time * velocity.0;
+            });
+        self.3
+            .for_each_mut(&mut self.0, |(velocity, mut position)| {
+                position.bypass_change_detection().0 += time * velocity.0;
             });
     }
 

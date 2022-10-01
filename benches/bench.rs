@@ -79,6 +79,15 @@ fn bench(c: &mut Criterion) {
             },
         );
 
+        group.bench_with_input(
+            BenchmarkId::new("simd_batch_4_soa_simulated_nochangedetect", size),
+            &size,
+            |b, &size| {
+                let mut bench = impls::simd_batch_sse4::Benchmark::new(size);
+                b.iter(move || bench.run_optimal_nochange(rand::thread_rng().gen_range(0.0..=1.0)));
+            },
+        );
+
         /*
         group.bench_with_input(
             BenchmarkId::new("simd_batch_sse4_soa_suboptimal", size),
