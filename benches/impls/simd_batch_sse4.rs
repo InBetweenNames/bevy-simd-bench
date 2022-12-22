@@ -3,7 +3,7 @@ use rand::Rng;
 
 use std::marker::PhantomData;
 
-use bevy::{prelude::*, reflect::erased_serde::private::serde::de::IntoDeserializer};
+use bevy::prelude::*;
 
 struct X;
 struct Y;

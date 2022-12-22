@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 bevy = { path = "../bevy" } #{ git = "https://github.com/bevyengine/bevy.git", branch = "main" }
-criterion = { version = "0.3", features = ["html_reports"] }
+criterion = { version = "0.4", features = ["html_reports", "plotters"] }
 rand = "0.8"
 
 [profile.release]
